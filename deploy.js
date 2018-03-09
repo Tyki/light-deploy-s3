@@ -7,6 +7,13 @@ var dotenv = require('dotenv')
 
 var config = dotenv.config().parsed
 
+var allowedACL = ['private', 'public-read', 'public-read-write', 'authenticated-read', 'aws-exec-read', 'bucket-owner-read', 'bucker-owner-full-control']
+
+if (!config) {
+    console.error('Missing .env file')
+    process.exit(1)
+}
+
 if (!config.hasOwnProperty('aws_access_key_id')) {
     console.error('Missing "aws_access_key_id" in .env')
     process.exit(1)
@@ -33,6 +40,15 @@ mandatoryParameters.forEach(parameter => {
         allParametersRequired = false
     }
 })
+
+var ACL = 'public-read'
+if (argv.hasOwnProperty('ACL')) {
+    if (allowedACL.indexOf(argv.ACL) !== -1) {
+        ACL = argv.ACL
+    } else {
+        console.error('ACL is not in the list of allowed ACL. Using default ("public-read")')
+    }
+}
 
 if (!allParametersRequired) {
     console.log('Aborting script due to missing parameters')
@@ -89,7 +105,8 @@ function startUpload () {
 
     var uploadParams = {
         s3Params: {
-            Bucket: bucketName
+            Bucket: bucketName,
+            ACL
         }
     }
 
@@ -117,7 +134,7 @@ function startUpload () {
         })
         uploader.on('end', function() {
             spinner.stop()
-            console.log("done downloading")
+            console.log("Deployment done")
         })
     }
 }
