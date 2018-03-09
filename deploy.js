@@ -39,7 +39,7 @@ if (!allParametersRequired) {
     process.exit(1)
 }
 
-file = argv.file
+file = path.resolve(argv.file)
 bucketName = argv.bucket
 bucketRegion = argv.region
 cwd = argv.cwd
