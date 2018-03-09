@@ -1,0 +1,18 @@
+{
+  "name": "light-deploy-s3",
+  "version": "1.0.0",
+  "description": "Light command with limited options for deploying files or sync directory to S3",
+  "main": "deploy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Tyki",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^5.0.1",
+    "minimist": "^1.2.0",
+    "ora": "^2.0.0",
+    "s3": "^4.4.0"
+  }
+}
