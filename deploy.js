@@ -116,6 +116,10 @@ function startUpload () {
     if (isDir) {
         uploadParams.localDir = file
 
+        if (cwd && cwd !== '') {
+            uploadParams.s3Params.Prefix = cwd
+        }
+
         var uploader = client.uploadDir(uploadParams);
         uploader.on('error', function(err) {
             console.error("unable to sync:", err.stack)
