@@ -1,6 +1,6 @@
 {
   "name": "light-deploy-s3",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Light command with limited options for deploying files or sync directory to S3",
   "main": "deploy.js",
   "scripts": {
