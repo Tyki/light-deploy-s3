@@ -123,6 +123,7 @@ function startUpload () {
         var uploader = client.uploadDir(uploadParams);
         uploader.on('error', function(err) {
             console.error("unable to sync:", err.stack)
+            spinner.stop()
         })
         uploader.on('end', function() {
             spinner.stop()
@@ -135,6 +136,7 @@ function startUpload () {
         var uploader = client.uploadFile(uploadParams);
         uploader.on('error', function(err) {
             console.error("unable to download:", err.stack);
+            spinner.stop()
         })
         uploader.on('end', function() {
             spinner.stop()
