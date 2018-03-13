@@ -1,4 +1,5 @@
 var s3 = require('s3')
+var AWS = require('aws-sdk')
 var fs = require('fs')
 var path = require('path')
 var argv = require('minimist')(process.argv.slice(2))
@@ -95,12 +96,14 @@ fs.open(file, 'r', (error, fd) => {
  * Upload file or directory content to specified bucket name and region
  */
 function startUpload () {
+
+    var awsS3Client = new AWS.S3({
+        accessKeyId: accessKey,
+        secretAccessKey: secretKey,
+        region: bucketRegion
+    })
     var client = s3.createClient({
-        s3Options: {
-            accessKeyId: accessKey,
-            secretAccessKey: secretKey,
-            region: bucketRegion
-        }
+        s3Client: awsS3Client
     })
 
     var uploadParams = {
