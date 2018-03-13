@@ -1,6 +1,6 @@
 {
   "name": "light-deploy-s3",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Light command with limited options for deploying files or sync directory to S3",
   "main": "deploy.js",
   "scripts": {
@@ -10,6 +10,7 @@
   "author": "Tyki",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.208.0",
     "dotenv": "^5.0.1",
     "minimist": "^1.2.0",
     "ora": "^2.0.0",
